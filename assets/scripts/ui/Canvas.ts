@@ -21,6 +21,16 @@ export class Canvas extends Component {
     visible: true,
   })
   _btnStartGame: Button | null = null;
+  @property({
+    type: Button,
+    visible: true,
+  })
+  _btnUpgAir: Button | null = null;
+  @property({
+    type: Button,
+    visible: true,
+  })
+  _btnUpgRocket: Button | null = null;
 
   @property({
     type: GameController,
@@ -41,6 +51,9 @@ export class Canvas extends Component {
   protected start() {
     this._btnHelp.node.on(Button.EventType.CLICK, this.ShowHelpPanel, this);
     this._btnStartGame.node.on(Button.EventType.CLICK, this.StartGame, this);
+    this._btnUpgAir.node.on(Button.EventType.CLICK, this.UpgAir, this);
+    this._btnUpgRocket.node.on(Button.EventType.CLICK, this.UpgRocket, this);
+
     this._gameController.SetCanvas(this);
   }
 
@@ -58,6 +71,14 @@ export class Canvas extends Component {
     this._gameController.StartGame();
   }
 
+  private UpgAir(button: Button) {
+    this._gameController.Upgrade(0);
+  }
+
+  private UpgRocket(button: Button) {
+    this._gameController.Upgrade(1);
+  }
+
   public Menu() {
     this._UiCamera.priority = 2;
   }
@@ -68,5 +89,7 @@ export class Canvas extends Component {
   protected onDestroy(): void {
     this._btnHelp.node.off(Button.EventType.CLICK, this.ShowHelpPanel, this);
     this._btnStartGame.node.off(Button.EventType.CLICK, this.StartGame, this);
+    this._btnUpgAir.node.off(Button.EventType.CLICK, this.UpgAir, this);
+    this._btnUpgRocket.node.off(Button.EventType.CLICK, this.UpgRocket, this);
   }
 }

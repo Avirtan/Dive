@@ -89,6 +89,23 @@ export class GameController extends Component {
     }
   }
 
+  public Upgrade(type: number) {
+    let coin = this._metaService.GetCoin();
+    if (coin <= 0) return;
+    let userSaveData = this._saveService.GetSaveData(SaveKey.UserKey);
+    let model = new PlayerModel(0, 0, 0);
+    model.FromJson(userSaveData);
+    if (type == 0) {
+      model.UpgradeAir();
+    }
+    if (type == 1) {
+      model.UpgradeRocket();
+    }
+    this._saveService.SetSaveData(SaveKey.UserKey, model.ToJson());
+    this._metaService.AddCoin(-1);
+    this._canvas.UpdateCoin(this._metaService.GetCoin());
+  }
+
   public StartGame() {
     this._inputService.EnableInput = true;
     this._isStartGame = true;

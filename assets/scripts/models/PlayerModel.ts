@@ -12,6 +12,12 @@ export class PlayerModel {
   public get CooldownRocket() {
     return this._cooldownRocket;
   }
+  public UpgradeAir() {
+    this._air += 1;
+  }
+  public UpgradeRocket() {
+    this._countRocket += 1;
+  }
 
   public DecreaseRocket() {
     this._countRocket -= 1;
