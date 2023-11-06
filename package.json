@@ -1,0 +1,13 @@
+{
+  "name": "Dive",
+  "uuid": "6deef4e2-f198-455f-ac53-506d05a61a8a",
+  "creator": {
+    "version": "3.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.10"
+  },
+  "dependencies": {
+    "crypto-ts": "^1.0.2"
+  }
+}
